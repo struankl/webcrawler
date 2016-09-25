@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wipro Webcrawler Test</title>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+    <script src="webcrawler.js"></script>
+</head>
+<body>
+    <input data-bind="value: initialUrl"/>
+    <button data-bind="click: doCrawl, disable: queryRunning">Crawl</button>
+    <!-- ko if: isError -->
+    <div>There was a error crawling your request, please check your url.</div>
+    <!-- /ko -->
+    <!-- ko if: queryRunning -->
+    <div>Crawling....</div>
+    <!-- /ko -->
+    <!-- ko if: !!crawlMap() -->
+        <div data-bind="with: crawlMap">
+            <h2>Crawled Map for <span data-bind="text: url"></span></h2>
+            <ul data-bind="foreach: {data: pages, as: 'page'}">
+                <li>
+                    <span data-bind="text: page.url"></span>
+                    <ul data-bind="foreach: {data: page.linksPerType, as: 'pageLinks'}" >
+                        <li>
+                            <span data-bind="css: pageLinks.linkType, text: pageLinks.linkType"></span>
+                            <ul data-bind="foreach: {data: pageLinks.links, as: 'linkUrl'}">
+                                <li>
+                                    <a class="link" data-bind="text: linkUrl, attr: {href: linkUrl}"></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    <!-- /ko -->
+</body>
+</html>
