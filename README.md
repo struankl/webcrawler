@@ -8,7 +8,7 @@
 After cloning or downloading execute the following commands in the base directory
 * `mvn install`
 * `java -jar target/webcrawler-1.0-SNAPSHOT.jar`
-* load http://localhost:8080 in a modern browser (because arrow functions are used - very simple to make IE compliant)
+* load [http://localhost:8080](http://localhost:8080) in a modern browser (because arrow functions are used - very simple to make IE compliant)
 
 ##Issues and Limitations
 * Test coverage is _minimal_
